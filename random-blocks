@@ -1,0 +1,55 @@
+<html>
+<div id="first">
+<h3>Get a random Name</h3>
+<input id="names"> </input><button id="getname"> <- add this name</button>
+<ul id="list"></list>
+<button id="random">choose name</button>
+</div>
+
+<div id="second"><h2><span id="win"></span><h2></div>
+<script>
+var random_list;
+
+function getNumberOrString(value) {
+  // Convert a string value to a number if possible
+  let number_value = Number(value);
+  if (Number.isNaN(number_value)) {
+    return value
+  } else {
+    return number_value
+  }
+}
+
+function randomInt(n) {
+  // Return a random number from in [0, n[
+  return Math.floor(Math.random()*n);
+}
+
+function randomMember(arr) {
+  // Return a random member of the array
+  return arr[randomInt(arr.length)]
+}
+
+
+
+document.getElementById('getname').addEventListener('click', (event) => {
+  let element_name = document.getElementById('name');
+  let element_list = document.getElementById('list');
+  let new_li = document.createElement('li');
+  new_li.innerText = getNumberOrString(document.getElementById('names').value);
+
+  element_list.appendChild(new_li);
+  random_list.push(getNumberOrString(document.getElementById('names').value));
+
+});
+
+document.getElementById('random').addEventListener('click', (event) => {
+  let element_win = document.getElementById('win');
+  element_win.innerText = randomMember(random_list);
+  element_win.style.color = '#993399';
+
+});
+random_list = [];
+</script>
+
+</html>
